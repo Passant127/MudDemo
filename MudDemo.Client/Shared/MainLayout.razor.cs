@@ -4,16 +4,17 @@ using MudBlazor;
 using MudDemo.Client.Components.Shared;
 using MudDemo.Client.Models;
 using Toolbelt.Blazor.HotKeys;
+using static MudBlazor.CategoryTypes;
 
 namespace MudDemo.Client.Shared;
 
 public partial class MainLayout : IDisposable
 {
-    private readonly Palette _darkPalette = new()
+    private readonly PaletteDark _darkPalette = new ()
     {
         Black = "#27272f",
         Background = "rgb(21,27,34)",
-        BackgroundGrey = "#27272f",
+        BackgroundGray = "#27272f",
         Surface = "#212B36",
         DrawerBackground = "rgb(21,27,34)",
         DrawerText = "rgba(255,255,255, 0.50)",
@@ -33,18 +34,24 @@ public partial class MainLayout : IDisposable
         TextDisabled = "rgba(255,255,255, 0.2)"
     };
 
-    private readonly Palette _lightPalette = new();
-
-    private readonly MudTheme _theme = new()
+    private readonly PaletteLight _lightPalette = new  ()
     {
-        Palette = new Palette
+        
+    };
+
+   
+
+    private readonly MudTheme _theme = new ()
+    {
+        PaletteDark = new PaletteDark
         {
             Primary = Colors.Green.Default
         },
         LayoutProperties = new LayoutProperties
         {
             AppbarHeight = "80px",
-            DefaultBorderRadius = "12px"
+            DefaultBorderRadius = "12px",
+            
         },
         Typography = new Typography
         {
@@ -64,6 +71,8 @@ public partial class MainLayout : IDisposable
     };
 
     private bool _canMiniSideMenuDrawer = true;
+    
+    
     private bool _commandPaletteOpen;
 
     private HotKeysContext? _hotKeysContext;
@@ -105,8 +114,19 @@ public partial class MainLayout : IDisposable
     {
         _themeManager = themeManager;
 
-        _theme.Palette = _themeManager.IsDarkMode ? _darkPalette : _lightPalette;
-        _theme.Palette.Primary = _themeManager.PrimaryColor;
+        if (_themeManager.IsDarkMode)
+        {
+          
+            _theme.PaletteLight = _lightPalette;
+        }
+       
+        else
+        {
+            
+          
+            _theme.PaletteDark = _darkPalette;
+        }
+        
 
         await UpdateThemeManagerLocalStorage();
     }

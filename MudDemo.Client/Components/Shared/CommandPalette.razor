@@ -7,7 +7,7 @@
                           Placeholder="Search..."
                           TextChanged="@(SearchPages)" 
                           Immediate="true"/>
-            <MudList Clickable="true"
+            <MudList T="string"  Clickable="true"
                      Style="height: 300px; overflow-y: auto">
                 @foreach (var (key, value) in _pagesFiltered)
                 {

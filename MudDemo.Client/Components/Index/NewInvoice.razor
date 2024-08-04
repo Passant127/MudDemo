@@ -1,6 +1,7 @@
 @using MudDemo.Client.Models.Invoice
 @inherits MudComponentBase
 
+
 <MudElement @attributes="@UserAttributes"
             Class="@Classname"
             Style="@Style">
@@ -43,21 +44,21 @@
                     @switch (context.Status)
                     {
                         case InvoiceStatus.Paid:
-                            <MudChip Color="Color.Success"
+                            <MudChip T = "string" Color="Color.Success"
                                      Size="Size.Small"
                                      Variant="Variant.Text">
                                 Paid
                             </MudChip>
                             break;
                         case InvoiceStatus.InProgress:
-                            <MudChip Color="Color.Warning"
+                            <MudChip T="string" Color="Color.Warning"
                                      Size="Size.Small"
                                      Variant="Variant.Text">
                                 In progress
                             </MudChip>
                             break;
                         case InvoiceStatus.OutOfDate:
-                            <MudChip Color="Color.Error"
+                            <MudChip T="string" Color="Color.Error"
                                      Size="Size.Small"
                                      Variant="Variant.Text">
                                 Out of date

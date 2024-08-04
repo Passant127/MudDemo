@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+
+
 using MudDemo.Client.Models;
 using MudDemo.Client.Models.SideMenu;
 
@@ -25,28 +27,28 @@ public partial class SideMenu
                     Title = "E-Commerce",
                     Icon = Icons.Material.Filled.ShoppingCart,
                     Href = "/ecommerce",
-                    PageStatus = PageStatus.Wip
+                    PageStatus = PageStatus.Completed
                 },
                 new()
                 {
                     Title = "Analytics",
                     Icon = Icons.Material.Filled.Analytics,
                     Href = "/analytics",
-                    PageStatus = PageStatus.ComingSoon
+                    PageStatus = PageStatus.Completed
                 },
                 new()
                 {
                     Title = "Banking",
                     Icon = Icons.Material.Filled.Money,
                     Href = "/banking",
-                    PageStatus = PageStatus.ComingSoon
+                    PageStatus = PageStatus.Completed
                 },
                 new()
                 {
                     Title = "Booking",
                     Icon = Icons.Material.Filled.CalendarToday,
                     Href = "/booking",
-                    PageStatus = PageStatus.ComingSoon
+                    PageStatus = PageStatus.Completed
                 }
             }
         },
@@ -67,19 +69,19 @@ public partial class SideMenu
                         {
                             Title = "Profile",
                             Href = "/user/profile",
-                            PageStatus = PageStatus.ComingSoon
+                            PageStatus = PageStatus.Completed
                         },
                         new()
                         {
                             Title = "Cards",
                             Href = "/user/cards",
-                            PageStatus = PageStatus.ComingSoon
+                            PageStatus = PageStatus.Completed
                         },
                         new()
                         {
                             Title = "List",
                             Href = "/user/list",
-                            PageStatus = PageStatus.ComingSoon
+                            PageStatus = PageStatus.Completed
                         }
                     }
                 },
@@ -94,19 +96,19 @@ public partial class SideMenu
                         {
                             Title = "Posts",
                             Href = "/user/posts",
-                            PageStatus = PageStatus.ComingSoon
+                            PageStatus = PageStatus.Completed
                         },
                         new()
                         {
                             Title = "Post",
                             Href = "/user/post",
-                            PageStatus = PageStatus.ComingSoon
+                            PageStatus = PageStatus.Completed
                         },
                         new()
                         {
                             Title = "New Post",
                             Href = "/user/newpost",
-                            PageStatus = PageStatus.ComingSoon
+                            PageStatus = PageStatus.Completed
                         }
                     }
                 }
