@@ -73,16 +73,11 @@ public partial class SideMenu
                         },
                         new()
                         {
-                            Title = "Cards",
-                            Href = "/user/cards",
+                            Title = "Skeleton",
+                            Href = "/user/skeleton",
                             PageStatus = PageStatus.Completed
                         },
-                        new()
-                        {
-                            Title = "List",
-                            Href = "/user/list",
-                            PageStatus = PageStatus.Completed
-                        }
+                      
                     }
                 },
                 new()
