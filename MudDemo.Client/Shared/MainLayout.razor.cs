@@ -34,12 +34,19 @@ public partial class MainLayout : IDisposable
         TextDisabled = "rgba(255,255,255, 0.2)"
     };
 
-    private readonly PaletteLight _lightPalette = new  ()
+    private readonly PaletteLight _lightPalette = new()
     {
-        
+        Black = "#ffffff",
+        Background = "#f5f5f5",
+        Surface = "#ffffff",
+        AppbarBackground = "#ffffff",
+        AppbarText = "rgba(0,0,0, 0.70)",
+        TextPrimary = "rgba(0,0,0, 0.87)",
+        TextSecondary = "rgba(0,0,0, 0.54)",
+      
     };
 
-   
+
 
     private readonly MudTheme _theme = new ()
     {
@@ -116,19 +123,15 @@ public partial class MainLayout : IDisposable
 
         if (_themeManager.IsDarkMode)
         {
-          
-            _theme.PaletteLight = _lightPalette;
-        }
-       
-        else
-        {
-            
-          
             _theme.PaletteDark = _darkPalette;
         }
-        
+        else
+        {
+            _theme.PaletteLight = _lightPalette;
+        }
 
         await UpdateThemeManagerLocalStorage();
+        StateHasChanged();
     }
 
     private async Task OpenCommandPalette()

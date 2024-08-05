@@ -22,7 +22,7 @@
             <MudItem xs="6">
                 <MudButton Class="mode-button"
                            FullWidth="true"
-                           OnClick="@(() => ToggleDarkLightMode(false))"
+                           OnClick="@(() => @ToggleDarkLightMode(false))"
                            Style="background: white;">
                     <MudIcon Color="Color.Primary"
                              Icon="@Icons.Material.Filled.WbSunny" />
@@ -31,7 +31,7 @@
             <MudItem xs="6">
                 <MudButton Class="mode-button"
                            FullWidth="true"
-                           OnClick="@(() => ToggleDarkLightMode(true))"
+                           OnClick="@(() => @ToggleDarkLightMode(true))"
                            Style="background: #333333;">
                     <MudIcon Icon="@Icons.Material.Filled.DarkMode"
                              Style="color: #c9c9c9" />
@@ -46,10 +46,10 @@
             @foreach (var color in _primaryColors)
             {
                 <MudItem xs="4">
-                    <MudButton Class="@(color == @ThemeManager.PrimaryColor ? "color-button color-button-selected" : "color-button")"
+                    <MudButton Class="@(color == ThemeManager.PrimaryColor ? "color-button color-button-selected" : "color-button")"
                                FullWidth="true"
                                OnClick="@(() => UpdateThemePrimaryColor(color))">
-                        <div class="@(color == @ThemeManager.PrimaryColor ? "oval oval-selected" : "oval")"
+                        <div class="@(color == ThemeManager.PrimaryColor ? "oval oval-selected" : "oval")"
                              style="@($"background: {color};")">
                         </div>
                     </MudButton>

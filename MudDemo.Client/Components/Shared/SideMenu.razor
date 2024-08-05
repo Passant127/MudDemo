@@ -1,14 +1,16 @@
 @using MudBlazor.Extensions
 @using MudDemo.Client.Models.SideMenu
+
 <MudDrawer Breakpoint="Breakpoint.Md"
            Class="side-menu"
            Elevation="0"
            MiniWidth="100px"
-           Open="SideMenuDrawerOpen"
+           Open="@SideMenuDrawerOpen"
            OpenChanged="@(e => SideMenuDrawerOpenChanged.InvokeAsync(e))"
            OpenMiniOnHover="true"
            Variant="@(CanMiniSideMenuDrawer ? DrawerVariant.Mini : DrawerVariant.Responsive)"
            Width="280px">
+
     <MudDrawerHeader Class="align-center d-flex justify-center pa-0">
         <MudIcon Class="@(SideMenuDrawerOpen ? "ml-6" : "")"
                  Color="Color.Primary"
@@ -20,15 +22,15 @@
             <MudSpacer />
             <MudTooltip Arrow="true"
                         Text="Mini Menu">
-                <MudToggleIconButton Class="mr-2"
-                                     Color="@Color.Error"
-                                     Icon="@Icons.Material.Filled.MenuOpen"
-                                     Size="Size.Small"
-                                     Toggled="CanMiniSideMenuDrawer"
-                                     ToggledChanged="@(e => CanMiniSideMenuDrawerChanged.InvokeAsync(e))"
-                                     ToggledColor="@Color.Primary"
-                                     ToggledIcon="@Icons.Material.Filled.MenuOpen"
-                                     ToggledSize="Size.Small" />
+                <MudIconButton Class="mr-2"
+                               Color="Color.Error"
+                               Icon="@Icons.Material.Filled.MenuOpen"
+                               Size="Size.Small"
+                               Toggled="CanMiniSideMenuDrawer"
+                               ToggledChanged="@(() => CanMiniSideMenuDrawerChanged.InvokeAsync())"
+                               ToggledColor="Color.Primary"
+                               ToggledIcon="@Icons.Material.Filled.MenuOpen"
+                               ToggledSize="Size.Small" />
             </MudTooltip>
         }
     </MudDrawerHeader>
@@ -41,7 +43,7 @@
                 <ChildContent>
                     <div class="align-center d-flex">
                         <MudAvatar>
-                            <MudImage Src="@User.Avatar"/>
+                            <MudImage Src="@User.Avatar" />
                         </MudAvatar>
                     </div>
                     <div class="d-flex flex-column px-4">
@@ -100,7 +102,7 @@
                                         {
                                             <MudSpacer />
                                             <MudChip T="string" Class="mr-4"
-                                                     Color="@Color.Primary"
+                                                     Color="Color.Primary"
                                                      Size="Size.Small"
                                                      Variant="Variant.Text">
                                                 @menuItem.PageStatus.ToString()
@@ -124,7 +126,7 @@
                             {
                                 <MudSpacer />
                                 <MudChip T="string" Class="mr-4"
-                                         Color="@Color.Primary"
+                                         Color="Color.Primary"
                                          Size="Size.Small"
                                          Variant="Variant.Text">
                                     @sectionItem.PageStatus.ToString()
@@ -139,30 +141,27 @@
 </MudDrawer>
 
 <style>
+    .mud-nav-link {
+        white-space: normal !important;
+        padding: 12px 16px 12px 38px;
+    }
 
-        .mud-nav-link {
-            white-space: normal !important;
-            padding: 12px 16px 12px 38px;
-        }
-        
         .mud-nav-link.active:not(.mud-nav-link-disabled) {
             border-right: 3px solid var(--mud-palette-primary);
-            background-color: rgba(var(--mud-palette-primary-rgb), 0.1)
+            background-color: rgba(var(--mud-palette-primary-rgb), 0.1);
         }
-        
-        .side-menu {
-            border-right: 1px solid var(--mud-palette-table-lines)
-        }
-        
-        .user-button {
-            text-transform:none; 
-            background: rgba(var(--mud-palette-primary-rgb), 0.1)
-        }
-        
-        .side-menu .mud-chip.mud-chip-size-small
-        {
-            font-size: 10px;
-            height: 18px;
-        }
-       
+
+    .side-menu {
+        border-right: 1px solid var(--mud-palette-table-lines);
+    }
+
+    .user-button {
+        text-transform: none;
+        background: rgba(var(--mud-palette-primary-rgb), 0.1);
+    }
+
+    .side-menu .mud-chip.mud-chip-size-small {
+        font-size: 10px;
+        height: 18px;
+    }
 </style>
