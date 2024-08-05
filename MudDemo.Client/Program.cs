@@ -13,9 +13,15 @@ builder.Services.AddRazorPages(); // Add services required for Razor Page
 
 // Configure HttpClient with a proper BaseAddress
 // Adjust the BaseAddress according to your API endpoint or environment
-builder.Services.AddScoped(sp => new HttpClient
+var httpHandler = new HttpClientHandler()
 {
-    BaseAddress = new Uri("https://localhost:44372/") // Set a default base URL or configure as needed
+    AllowAutoRedirect = true,
+    ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true
+};
+builder.Services.AddSingleton(sp => new HttpClient(httpHandler)
+{
+    BaseAddress = new Uri("https://localhost:7227/"),
+     // Set a default base URL or configure as needed
 });
 
 
