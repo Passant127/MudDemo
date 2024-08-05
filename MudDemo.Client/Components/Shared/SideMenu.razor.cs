@@ -98,18 +98,7 @@ public partial class SideMenu
                             Href = "/user/posts",
                             PageStatus = PageStatus.Completed
                         },
-                        new()
-                        {
-                            Title = "Post",
-                            Href = "/user/post",
-                            PageStatus = PageStatus.Completed
-                        },
-                        new()
-                        {
-                            Title = "New Post",
-                            Href = "/user/newpost",
-                            PageStatus = PageStatus.Completed
-                        }
+                       
                     }
                 }
             }
