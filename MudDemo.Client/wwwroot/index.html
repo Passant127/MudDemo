@@ -8,12 +8,22 @@
     <base href="/" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <style>
+        /* Default fallback style */
+        #main-container {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            position: fixed;
+            background-color: #f5f5f5; /* Light mode default */
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <div id="main-container">
-            <svg id="mud-icon" width="400px" height="253.83px" viewBox="0 0 1653 1049" xmlns="http://www.w3.org/2000/svg" style="left:50%;position:fixed;top:383px;transform: translate(-50%,-50%);margin-right:8px;">
+            <svg id="mud-icon" width="400px" height="253.83px" viewBox="0 0 1653 1049" xmlns="http://www.w3.org/2000/svg" style="left:50%;position:fixed;top:50%;transform: translate(-50%,-50%);margin-right:8px;">
                 <path d="M0.15,572.58V0.16L495.9,286.37v190.81L165.4,286.37v381.62L0.15,572.58z"></path>
                 <path d="M495.9,286.37L991.65,0.16v572.43l-330.5,190.81l-165.25-95.4l330.5-190.81V286.37L495.9,477.18V286.37z"></path>
                 <path d="M495.9,667.99V858.8l330.5,190.81V858.8L495.9,667.99z"></path>
@@ -31,28 +41,28 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+
+    <script src="_framework/blazor.server.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="js/apex-chart-wrapper.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var themeManager = JSON.parse(window.localStorage.getItem("themeManager")) || { IsDarkMode: false, PrimaryColor: '#000000' };
+            var mainContainer = document.getElementById("main-container");
+            var paths = document.getElementById("mud-icon").children;
 
-        var themeManager = JSON.parse(window.localStorage.getItem("themeManager"));
-        var paths = document.getElementById("mud-icon").children;
-        
-        if(themeManager.IsDarkMode) {
-            document.getElementById("main-container").setAttribute("style", "height:100%;width:100%;margin:0;position:fixed;background-color: #151b22");
-        } else {
-            document.getElementById("main-container").setAttribute("style", "height:100%;width:100%;margin:0;position:fixed;");
-        }
-        
-        for(var i = 0; i < paths.length; i++) {
-            paths[i].setAttribute("fill", themeManager.PrimaryColor)
-        }
-        
+            if (themeManager.IsDarkMode) {
+                mainContainer.style.backgroundColor = '#151b22'; // Dark mode background
+            } else {
+                mainContainer.style.backgroundColor = ''; // Light mode background
+            }
+
+            for (var i = 0; i < paths.length; i++) {
+                paths[i].setAttribute("fill", themeManager.PrimaryColor);
+            }
+        });
     </script>
-
 </body>
 
 </html>

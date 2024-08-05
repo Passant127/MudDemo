@@ -6,6 +6,7 @@ window.apex_wrapper = {
     renderApexChart(id, options) {
         var chart = new ApexCharts(document.querySelector("#" + id), options);
         chart.render();
+        
 
         this.charts.push(chart);
     },

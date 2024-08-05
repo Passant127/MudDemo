@@ -90,7 +90,7 @@ public partial class SideMenu
                         new()
                         {
                             Title = "Posts",
-                            Href = "/user/posts",
+                            Href = "/articles/posts",
                             PageStatus = PageStatus.Completed
                         },
                        

@@ -1,19 +1,28 @@
-using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor;
 using MudBlazor.Services;
-using MudDemo.Client;
+using Blazored.LocalStorage;
 using MudDemo.Client.Services;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+builder.Services.AddServerSideBlazor(); // Add server-side Blazor
+builder.Services.AddRazorPages(); // Add services required for Razor Page
+
+// Configure HttpClient with a proper BaseAddress
+// Adjust the BaseAddress according to your API endpoint or environment
+builder.Services.AddScoped(sp => new HttpClient
+{
+    BaseAddress = new Uri("https://localhost:44372/") // Set a default base URL or configure as needed
+});
+
 
 builder.Services.AddMudServices();
+
+
+
 builder.Services.AddHotKeys();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddMudServices(config =>
@@ -29,7 +38,30 @@ builder.Services.AddMudServices(config =>
     config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
 });
 
+
+// Register your custom services
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
 builder.Services.AddTransient<IArticlesService, ArticlesService>();
 
-await builder.Build().RunAsync();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+
+
+// Map Blazor components and fallback to _Host.cshtml
+app.MapBlazorHub();
+app.MapFallbackToPage("/_Host"); // Ensure _Host.cshtml exists in the Pages folder
+
+app.Run();
